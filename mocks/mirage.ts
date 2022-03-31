@@ -5,13 +5,23 @@ import * as uuid from "uuid";
 
 const SESSION_COOKIE_NAME = "session";
 
+const userId = uuid.v4();
+
+const isUserAuthenticated = (): boolean => {
+  return !!Cookies.get(SESSION_COOKIE_NAME);
+};
+
+const authenticateUser = (): void => {
+  Cookies.set(SESSION_COOKIE_NAME, new Date().getTime().toString(), {
+    domain: "localhost",
+    path: "/",
+    expires: new Date().getTime() + 2 * 60 * 60 * 1000,
+    sameSite: "strict",
+    secure: false,
+  });
+};
+
 export const makeServer = ({ environment = "test" } = {}) => {
-  const userId = uuid.v4();
-
-  const isUserAuthenticated = (): boolean => {
-    return !!Cookies.get(SESSION_COOKIE_NAME);
-  };
-
   const server = createServer({
     environment,
 
@@ -44,14 +54,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
           username === "gmochi56@icloud.com" &&
           md5(password) === "54ca4c4c1a1a31db487ec6e7e1fc3b61" // HelloWorld@123
         ) {
-          Cookies.set(SESSION_COOKIE_NAME, new Date().getTime().toString(), {
-            domain: "localhost",
-            path: "/",
-            expires: new Date().getTime() + 2 * 60 * 60 * 1000,
-            sameSite: "strict",
-            secure: false,
-          });
-
+          authenticateUser();
           return new Response(200);
         }
 

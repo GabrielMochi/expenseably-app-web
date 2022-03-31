@@ -10,7 +10,10 @@ const styles: ThemeExtension["styles"] = {
       color: "black",
       fontSize: "1.6rem",
       lineHeight: "2rem",
-      bgColor: colors?.secondary,
+      bgColor: (colors as Record<string, string>)?.secondary,
+      width: "100vw",
+      height: "100vh",
+      overflow: "auto",
     },
   },
 };

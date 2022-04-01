@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }: Props): ReactElement => {
       setIsAuthenticated(true);
     } catch (error) {
       setIsAuthenticated(false);
+      throw error;
     }
   };
 

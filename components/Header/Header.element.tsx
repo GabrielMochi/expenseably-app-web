@@ -25,6 +25,7 @@ const HeaderElement = ({ logout, isLoggingOut }: Props): ReactElement => (
     >
       <Logo />
       <Button
+        h="40px"
         variant="ghost"
         pos="absolute"
         right="20px"

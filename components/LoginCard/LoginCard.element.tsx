@@ -61,6 +61,7 @@ const LoginCardElement = ({ formik, t }: Props): ReactElement => (
       </VStack>
       <Box mt="48px">
         <Button
+          h="40px"
           disabled={!formik.isValid || formik.isSubmitting}
           isLoading={formik.isSubmitting}
           isFullWidth

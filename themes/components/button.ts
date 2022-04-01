@@ -5,7 +5,6 @@ const Button: ComponentStyleConfig = {
   variants: {
     primary: {
       fontSize: "1.6rem",
-      height: "40px",
       bg: "primary",
       color: "white",
       _focus: {
@@ -22,7 +21,6 @@ const Button: ComponentStyleConfig = {
     },
     ghost: {
       fontSize: "1.6rem",
-      height: "40px",
       color: "primary",
     },
   },

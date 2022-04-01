@@ -8,7 +8,7 @@ export default Factory.extend<Bank>({
     return faker.datatype.uuid();
   },
   name() {
-    return faker.finance.accountName();
+    return faker.company.companyName();
   },
   createdAt() {
     return faker.date.recent();

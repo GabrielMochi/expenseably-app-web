@@ -20,6 +20,11 @@ const Button: ComponentStyleConfig = {
         },
       },
     },
+    ghost: {
+      fontSize: "1.6rem",
+      height: "40px",
+      color: "primary",
+    },
   },
   defaultProps: {
     variant: "primary",

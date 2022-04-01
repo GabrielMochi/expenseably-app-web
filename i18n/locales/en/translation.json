@@ -1,1 +1,12 @@
-{}
+{
+  "login-card": {
+    "description": "Login",
+    "email-label": "Email",
+    "password-label": "Password",
+    "submit-button-label": "Login"
+  },
+  "erros": {
+    "generic": "Oops... something went wrong.",
+    "invalid-authentication": "Incorrect email or password."
+  }
+}

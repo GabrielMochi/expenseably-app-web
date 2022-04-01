@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }: Props): ReactElement => {
   const [isCheckingAuthentication, setIsCheckingAuthentication] =
     useState<AuthContextProps["isCheckingAuthentication"]>(true);
 
+  const [isLoggingOut, setIsLoggingOut] = useState<AuthContextProps["isLoggingOut"]>(false);
+
   const login = async (authentication: Authentication): Promise<void> => {
     try {
       await loginService(authentication);
@@ -25,8 +27,16 @@ export const AuthProvider = ({ children }: Props): ReactElement => {
   };
 
   const logout = async (): Promise<void> => {
-    await logoutService();
-    setIsAuthenticated(false);
+    setIsLoggingOut(true);
+
+    try {
+      await logoutService();
+      setIsAuthenticated(false);
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   const handleAuthentication = useCallback(async (): Promise<void> => {
@@ -50,9 +60,8 @@ export const AuthProvider = ({ children }: Props): ReactElement => {
     <AuthContext.Provider
       value={{
         isAuthenticated,
-        setIsAuthenticated,
         isCheckingAuthentication,
-        setIsCheckingAuthentication,
+        isLoggingOut,
         login,
         logout,
       }}

@@ -11,7 +11,7 @@ const styles: ThemeExtension["styles"] = {
       fontSize: "1.6rem",
       lineHeight: "2rem",
       bgColor: (colors as Record<string, string>)?.secondary,
-      width: "100vw",
+      width: "100%",
       height: "100vh",
       overflow: "auto",
     },

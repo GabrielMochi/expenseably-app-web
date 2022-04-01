@@ -1,4 +1,5 @@
 import { Box, Flex, Progress } from "@chakra-ui/react";
+import LoginCard from "components/LoginCard";
 import Logo from "components/Logo";
 import React, { ReactElement } from "react";
 
@@ -25,7 +26,7 @@ const SplashScreenElement = ({ isLoading, showLoginForm }: Props): ReactElement 
         <Progress w="256px" mt="20px" mx="auto" isIndeterminate borderRadius="full" />
       </Box>
     )}
-    {showLoginForm && <></>}
+    {showLoginForm && <LoginCard />}
   </Flex>
 );
 

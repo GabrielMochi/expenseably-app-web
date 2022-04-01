@@ -20,14 +20,7 @@ type Props = {
 };
 
 const LoginCardElement = ({ formik }: Props): ReactElement => (
-  <Box
-    borderRadius="10px"
-    bgColor="white"
-    py="48px"
-    px="64px"
-    boxShadow="0 1px 3px rgba(0,108,122,0.12), 0 1px 2px rgba(0,108,122,0.24)"
-    w="480px"
-  >
+  <Box borderRadius="10px" bgColor="white" py="48px" px="64px" boxShadow="base" w="480px">
     <Logo mx="auto" />
     <Flex my="32px" align="center">
       <Box flex="1">
@@ -68,11 +61,7 @@ const LoginCardElement = ({ formik }: Props): ReactElement => (
         <Button
           disabled={!formik.isValid || formik.isSubmitting}
           isLoading={formik.isSubmitting}
-          fontSize="1.6rem"
-          height="40px"
           isFullWidth
-          bgColor="primary"
-          color="white"
           type="submit"
         >
           Login

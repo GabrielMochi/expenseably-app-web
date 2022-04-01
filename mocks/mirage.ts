@@ -1,11 +1,10 @@
-import { createServer, Response } from "miragejs";
+import { createServer, Model, Response } from "miragejs";
 import md5 from "md5";
 import Cookies from "js-cookie";
-import * as uuid from "uuid";
+import userMock from "./userMock";
+import bankFactory from "./factories/bankFactory";
 
 const SESSION_COOKIE_NAME = "session";
-
-const userId = uuid.v4();
 
 const isUserAuthenticated = (): boolean => {
   return !!Cookies.get(SESSION_COOKIE_NAME);
@@ -25,6 +24,18 @@ export const makeServer = ({ environment = "test" } = {}) => {
   const server = createServer({
     environment,
 
+    models: {
+      bank: Model,
+    },
+
+    factories: {
+      bank: bankFactory,
+    },
+
+    seeds(server) {
+      server.createList("bank", 3);
+    },
+
     routes() {
       this.namespace = "api/v1";
 
@@ -34,13 +45,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.get("/user", () => {
         if (!isUserAuthenticated()) return new Response(401);
-
-        return {
-          id: userId,
-          name: "Gabriel Mochi",
-          email: "gmochi56@icloud.com",
-          createdAt: new Date(),
-        };
+        return userMock;
       });
 
       this.get("/auth", () => {
@@ -68,6 +73,8 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
         return new Response(200);
       });
+
+      this.get("/banks");
     },
   });
 

@@ -1,6 +1,6 @@
 import type { ThemeExtension } from "themes";
 
-const colors: ThemeExtension["colors"] = {
+const colors: ThemeExtension["colors"] & Record<string, string> = {
   primary: "#006D77",
   secondary: "#EFFFFA",
   success: "#006D77",

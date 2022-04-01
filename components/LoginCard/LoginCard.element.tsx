@@ -14,12 +14,14 @@ import Logo from "components/Logo";
 import type { FormikProps } from "formik";
 import type { FormikValues } from "./LoginCard.module";
 import React, { ReactElement } from "react";
+import type { TFunction } from "react-i18next";
 
 type Props = {
   formik: FormikProps<FormikValues>;
+  t: TFunction;
 };
 
-const LoginCardElement = ({ formik }: Props): ReactElement => (
+const LoginCardElement = ({ formik, t }: Props): ReactElement => (
   <Box borderRadius="10px" bgColor="white" py="48px" px="64px" boxShadow="base" w="480px">
     <Logo mx="auto" />
     <Flex my="32px" align="center">
@@ -27,7 +29,7 @@ const LoginCardElement = ({ formik }: Props): ReactElement => (
         <Divider />
       </Box>
       <Box mx="16px" color="grey">
-        Login
+        {t("login-card.description")}
       </Box>
       <Box flex="1">
         <Divider />
@@ -36,7 +38,7 @@ const LoginCardElement = ({ formik }: Props): ReactElement => (
     <chakra.form onSubmit={formik.handleSubmit}>
       <VStack spacing="20px">
         <FormControl isInvalid={formik.touched.email && !!formik.errors.email}>
-          <FormLabel htmlFor="email">E-mail</FormLabel>
+          <FormLabel htmlFor="email">{t("login-card.email-label")}</FormLabel>
           <FormField
             id="email"
             name="email"
@@ -47,7 +49,7 @@ const LoginCardElement = ({ formik }: Props): ReactElement => (
           <FormErrorMessage fontSize="1.2rem">{formik.errors.email}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={formik.touched.password && !!formik.errors.password}>
-          <FormLabel htmlFor="password">Password</FormLabel>
+          <FormLabel htmlFor="password">{t("login-card.password-label")}</FormLabel>
           <FormField
             id="password"
             name="password"
@@ -64,7 +66,7 @@ const LoginCardElement = ({ formik }: Props): ReactElement => (
           isFullWidth
           type="submit"
         >
-          Login
+          {t("login-card.submit-button-label")}
         </Button>
       </Box>
     </chakra.form>

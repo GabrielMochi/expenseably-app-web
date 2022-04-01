@@ -4,6 +4,7 @@ import LoginCardElement from "./LoginCard.element";
 import * as yup from "yup";
 import useAuth from "hooks/useAuth";
 import type { AxiosError } from "axios";
+import { useTranslation } from "react-i18next";
 
 export type FormikValues = {
   email: string;
@@ -16,6 +17,7 @@ const validationSchema = yup.object().shape({
 });
 
 const LoginCardModule = (): ReactElement => {
+  const { t } = useTranslation();
   const { login } = useAuth();
 
   const onSubmit = async (): Promise<void> => {
@@ -27,8 +29,8 @@ const LoginCardModule = (): ReactElement => {
       formik.setFieldError(
         "email",
         (error as AxiosError)?.response?.status === 401
-          ? "E-mail or password invalid."
-          : "Sorry! Something went wrong.",
+          ? t("erros.invalid-authentication")
+          : t("erros.generic"),
       );
     } finally {
       formik.setSubmitting(false);
@@ -45,7 +47,7 @@ const LoginCardModule = (): ReactElement => {
     validateOnMount: true,
   });
 
-  return <LoginCardElement formik={formik} />;
+  return <LoginCardElement formik={formik} t={t} />;
 };
 
 export default LoginCardModule;

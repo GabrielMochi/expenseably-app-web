@@ -6,10 +6,12 @@ import { getUser } from "services/getUser";
 type Props = { children?: ReactNode };
 
 const UserProvider = ({ children }: Props): ReactElement => {
-  const [userState, setUserState] = useState<UserContextProps>({ isLoading: true });
+  const [userState, setUserState] = useState<UserContextProps>({ isLoading: false });
   const { isAuthenticated, isCheckingAuthentication } = useContext(AuthContext);
 
   const loadUser = async (): Promise<void> => {
+    setUserState({ isLoading: true });
+
     try {
       const user = await getUser();
       setUserState({ user, isLoading: false });
@@ -19,7 +21,7 @@ const UserProvider = ({ children }: Props): ReactElement => {
   };
 
   const unloadUser = (): void => {
-    setUserState({ user: undefined, error: undefined, isLoading: false });
+    setUserState({ isLoading: false, user: undefined, error: undefined });
   };
 
   const handleUserAuthentication = useCallback((): void => {

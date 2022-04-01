@@ -2,7 +2,12 @@ import { Box, Flex, Progress } from "@chakra-ui/react";
 import Logo from "components/Logo";
 import React, { ReactElement } from "react";
 
-const SplashScreenElement = (): ReactElement => (
+type Props = {
+  isLoading?: boolean;
+  showLoginForm?: boolean;
+};
+
+const SplashScreenElement = ({ isLoading, showLoginForm }: Props): ReactElement => (
   <Flex
     pos="absolute"
     top="0"
@@ -14,10 +19,13 @@ const SplashScreenElement = (): ReactElement => (
     zIndex="42"
     backdropFilter="blur(5px)"
   >
-    <Box textAlign="center" maxW="300px">
-      <Logo width="300px" height="60px" />
-      <Progress w="256px" mt="20px" mx="auto" isIndeterminate borderRadius="full" />
-    </Box>
+    {isLoading && (
+      <Box textAlign="center" maxW="300px">
+        <Logo width="300px" height="60px" />
+        <Progress w="256px" mt="20px" mx="auto" isIndeterminate borderRadius="full" />
+      </Box>
+    )}
+    {showLoginForm && <></>}
   </Flex>
 );
 

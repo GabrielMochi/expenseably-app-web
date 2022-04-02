@@ -27,14 +27,6 @@ type Props = {
   showSkeleton: boolean;
   activeBank: Bank | undefined;
   onBankButtonClick: (bank: Bank) => void;
-  onRenameClick: (bank: Bank) => void;
-  isRenameModalOpen: boolean;
-  onRenameModalClose: () => void;
-  bankSelectedToBeRenamed: Bank | undefined;
-  onDeleteClick: (bank: Bank) => void;
-  isDeleteModalOpen: boolean;
-  onDeleteModalClose: () => void;
-  bankSelectedToBeDeleted: Bank | undefined;
 };
 
 const BankListSkeleton = (): ReactElement => (
@@ -51,14 +43,6 @@ const BanksCardElement = ({
   showSkeleton,
   activeBank,
   onBankButtonClick,
-  onRenameClick,
-  isRenameModalOpen,
-  onRenameModalClose,
-  bankSelectedToBeRenamed,
-  onDeleteClick,
-  isDeleteModalOpen,
-  onDeleteModalClose,
-  bankSelectedToBeDeleted,
 }: Props): ReactElement => (
   <Box bg="white" borderRadius="8px" boxShadow="base" p="32px">
     <Flex align="center" justify="space-between">
@@ -104,29 +88,13 @@ const BanksCardElement = ({
             </Button>
           </Flex>
           <Box>
-            <BanksCardMenuOptions
-              bank={bank}
-              onRenameClick={onRenameClick}
-              onDeleteClick={onDeleteClick}
-            />
+            <BanksCardMenuOptions bank={bank} />
           </Box>
         </Flex>
       ))}
     </VStack>
-    {bankSelectedToBeRenamed && (
-      <RenameBankModal
-        isOpen={isRenameModalOpen}
-        onClose={onRenameModalClose}
-        bank={bankSelectedToBeRenamed}
-      />
-    )}
-    {bankSelectedToBeDeleted && (
-      <DeleteBankModal
-        isOpen={isDeleteModalOpen}
-        onClose={onDeleteModalClose}
-        bank={bankSelectedToBeDeleted}
-      />
-    )}
+    <RenameBankModal />
+    <DeleteBankModal />
   </Box>
 );
 

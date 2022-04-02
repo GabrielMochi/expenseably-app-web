@@ -1,16 +1,10 @@
 import { useFormik } from "formik";
-import Bank from "interfaces/Bank";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import RenameBankModalElement from "./RenameBankModal.element";
 import * as yup from "yup";
 import useBanks from "hooks/useBanks";
-
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-  bank: Bank;
-};
+import { useDisclosure } from "@chakra-ui/react";
 
 export type FormFields = {
   name: string;
@@ -20,12 +14,15 @@ const validationSchema = yup.object().shape({
   name: yup.string().required(),
 });
 
-const RenameBankModalModule = ({ isOpen, onClose, bank }: Props): ReactElement => {
+const RenameBankModalModule = (): ReactElement => {
   const { t } = useTranslation();
-  const { update } = useBanks();
+  const { bankSelectedToBeRenamed: bank, setBankSelectedToBeRenamed, update } = useBanks();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit = async (): Promise<void> => {
     formik.setSubmitting(true);
+
+    if (!bank) throw new Error("bank value should not be null.");
 
     try {
       await update({ ...bank, name: formik.values.name });
@@ -37,13 +34,23 @@ const RenameBankModalModule = ({ isOpen, onClose, bank }: Props): ReactElement =
   };
 
   const formik = useFormik<FormFields>({
-    initialValues: {
-      name: bank?.name ?? "",
-    },
+    initialValues: { name: "" },
     onSubmit,
     validationSchema,
-    validateOnMount: true,
   });
+
+  useEffect(() => {
+    if (!formik.touched.name && !formik.values.name && bank)
+      formik.setFieldValue("name", bank.name);
+  }, [bank, formik]);
+
+  useEffect(() => {
+    if (!isOpen) setBankSelectedToBeRenamed(undefined);
+  }, [isOpen, setBankSelectedToBeRenamed]);
+
+  useEffect(() => {
+    if (bank) return onOpen();
+  }, [bank, onOpen]);
 
   return <RenameBankModalElement t={t} isOpen={isOpen} onClose={onClose} formik={formik} />;
 };

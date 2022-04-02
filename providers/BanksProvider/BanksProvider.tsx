@@ -14,6 +14,8 @@ const BanksProvider = ({ children }: Props): ReactElement => {
   const [banks, setBanks] = useState<Bank[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeBank, setActiveBank] = useState<Bank>();
+  const [bankSelectedToBeRenamed, setBankSelectedToBeRenamed] = useState<Bank>();
+  const [bankSelectedToBeDeleted, setBankSelectedToBeDeleted] = useState<Bank>();
 
   const load = async (): Promise<void> => {
     setIsLoading(true);
@@ -70,7 +72,20 @@ const BanksProvider = ({ children }: Props): ReactElement => {
 
   return (
     <BanksContext.Provider
-      value={{ banks, activeBank, isLoading, setActiveBank, load, add, update, remove }}
+      value={{
+        banks,
+        activeBank,
+        bankSelectedToBeRenamed,
+        bankSelectedToBeDeleted,
+        isLoading,
+        setActiveBank,
+        setBankSelectedToBeRenamed,
+        setBankSelectedToBeDeleted,
+        load,
+        add,
+        update,
+        remove,
+      }}
     >
       {children}
     </BanksContext.Provider>

@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 export type BanksContextProps = {
   banks: Bank[];
-  activeBank: Bank;
+  activeBank: Bank | undefined;
   isLoading: boolean;
   load: (bank: Bank) => Promise<void> | void;
   add: (bank: Bank) => Promise<void> | void;

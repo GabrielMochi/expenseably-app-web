@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import BanksContext from "contexts/BanksContext";
 import useUser from "hooks/useUser";
 import Bank from "interfaces/Bank";
@@ -6,14 +7,28 @@ import { useTranslation } from "react-i18next";
 import { getBanks } from "services/getBanks";
 import BanksCardElement from "./BanksCard.element";
 import { updateBank as updateBankService } from "services/updateBank";
+import { useDisclosure } from "@chakra-ui/react";
 
 const BanksCardModule = (): ReactElement => {
   const { t } = useTranslation();
   const { user } = useUser();
 
+  const {
+    isOpen: isRenameModalOpen,
+    onOpen: onRenameModalOpen,
+    onClose: onRenameModalClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpen: onDeleteModalOpen,
+    onClose: onDeleteModalClose,
+  } = useDisclosure();
+
   const [banks, setBanks] = useState<Bank[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeBank, setActiveBank] = useState<Bank>({} as Bank);
+  const [activeBank, setActiveBank] = useState<Bank>();
+  const [bankSelectedToBeRenamed, setBankSelectedToBeRenamed] = useState<Bank>();
 
   const showSkeleton = useMemo(() => isLoading || !user, [isLoading, user]);
 
@@ -32,19 +47,20 @@ const BanksCardModule = (): ReactElement => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const addBank = async (bank: Bank): Promise<void> => {
     throw new Error("method not implemented");
   };
 
   const updateBank = async (bank: Bank): Promise<void> => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updatedBank = await updateBankService(bank);
+    const banksCopy = [...banks];
+    const index = banksCopy.findIndex((_bank) => _bank.id === updatedBank.id);
 
-    setBanks([]);
+    banksCopy[index] = updatedBank;
+
+    setBanks([...banksCopy]);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const removeBank = async (bank: Bank): Promise<void> => {
     throw new Error("method not implemented");
   };
@@ -55,14 +71,18 @@ const BanksCardModule = (): ReactElement => {
     setActiveBank({} as Bank);
   };
 
-  useEffect(() => {
-    if (user) {
-      loadBanks();
-      return;
-    }
+  const onRenameClick = (bank: Bank): void => {
+    setBankSelectedToBeRenamed(bank);
+    onRenameModalOpen();
+  };
 
-    unloadBanks();
+  useEffect(() => {
+    if (user) loadBanks();
   }, [user]);
+
+  useEffect(() => {
+    if (isLoading || !user) unloadBanks();
+  }, [isLoading, user]);
 
   return (
     <BanksContext.Provider
@@ -83,6 +103,10 @@ const BanksCardModule = (): ReactElement => {
         showSkeleton={showSkeleton}
         activeBank={activeBank}
         onBankButtonClick={setActiveBank}
+        onRenameClick={onRenameClick}
+        isRenameModalOpen={isRenameModalOpen}
+        onRenameModalClose={onRenameModalClose}
+        bankSelectedToBeRenamed={bankSelectedToBeRenamed}
       />
     </BanksContext.Provider>
   );

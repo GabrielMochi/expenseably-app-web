@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import BanksCardMenuOptions from "components/BanksCardMenuOptions";
 import Headline from "components/Headline";
+import RenameBankModal from "components/RenameBankModal";
 import Bank from "interfaces/Bank";
 import React, { ReactElement } from "react";
 import type { TFunction } from "react-i18next";
@@ -23,8 +24,12 @@ type Props = {
   onAddClick: () => void;
   banks: Bank[];
   showSkeleton: boolean;
-  activeBank: Bank;
+  activeBank: Bank | undefined;
   onBankButtonClick: (bank: Bank) => void;
+  onRenameClick: (bank: Bank) => void;
+  isRenameModalOpen: boolean;
+  onRenameModalClose: () => void;
+  bankSelectedToBeRenamed: Bank | undefined;
 };
 
 const BankListSkeleton = (): ReactElement => (
@@ -41,6 +46,10 @@ const BanksCardElement = ({
   showSkeleton,
   activeBank,
   onBankButtonClick,
+  onRenameClick,
+  isRenameModalOpen,
+  onRenameModalClose,
+  bankSelectedToBeRenamed,
 }: Props): ReactElement => (
   <Box bg="white" borderRadius="8px" boxShadow="base" p="32px">
     <Flex align="center" justify="space-between">
@@ -76,7 +85,7 @@ const BanksCardElement = ({
                 <Icon
                   verticalAlign="middle"
                   as={VscCircleFilled}
-                  color={activeBank.id === bank.id ? "primary" : "gray.300"}
+                  color={activeBank?.id === bank.id ? "primary" : "gray.300"}
                   mr="12px"
                 />
               }
@@ -86,11 +95,22 @@ const BanksCardElement = ({
             </Button>
           </Flex>
           <Box>
-            <BanksCardMenuOptions bank={bank} />
+            <BanksCardMenuOptions
+              bank={bank}
+              onRenameClick={onRenameClick}
+              onDeleteClick={() => null}
+            />
           </Box>
         </Flex>
       ))}
     </VStack>
+    {bankSelectedToBeRenamed && (
+      <RenameBankModal
+        isOpen={isRenameModalOpen}
+        onClose={onRenameModalClose}
+        bank={bankSelectedToBeRenamed}
+      />
+    )}
   </Box>
 );
 

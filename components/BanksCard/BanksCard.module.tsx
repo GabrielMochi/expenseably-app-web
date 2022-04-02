@@ -3,7 +3,6 @@ import React, { ReactElement, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import BanksCardElement from "./BanksCard.element";
 import useBanks from "hooks/useBanks";
-import BanksProvider from "providers/BanksProvider";
 
 const BanksCardModule = (): ReactElement => {
   const { t } = useTranslation();
@@ -24,10 +23,4 @@ const BanksCardModule = (): ReactElement => {
   );
 };
 
-export default function BanksCardFactory(): ReactElement {
-  return (
-    <BanksProvider>
-      <BanksCardModule />
-    </BanksProvider>
-  );
-}
+export default BanksCardModule;

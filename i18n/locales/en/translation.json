@@ -13,7 +13,9 @@
   },
   "rename-bank-modal": {
     "title": "Rename bank",
-    "name-label": "Bank name"
+    "name-label": "Bank name",
+    "rename-button-label": "Rename",
+    "close-button-label": "Close"
   },
   "erros": {
     "generic": "Oops... something went wrong.",

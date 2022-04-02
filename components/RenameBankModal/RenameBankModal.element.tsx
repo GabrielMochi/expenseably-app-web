@@ -46,7 +46,7 @@ const RenameBankModalElement = ({ t, isOpen, onClose, formik }: Props): ReactEle
         </ModalBody>
         <ModalFooter>
           <Button variant="ghost" h="40px" color="gray" onClick={onClose}>
-            Close
+            {t("rename-bank-modal.close-button-label")}
           </Button>
           <Button
             isDisabled={!formik.isValid}
@@ -56,7 +56,7 @@ const RenameBankModalElement = ({ t, isOpen, onClose, formik }: Props): ReactEle
             ml="12px"
             type="submit"
           >
-            Rename
+            {t("rename-bank-modal.rename-button-label")}
           </Button>
         </ModalFooter>
       </form>

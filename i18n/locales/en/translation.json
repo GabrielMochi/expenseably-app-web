@@ -5,6 +5,30 @@
     "password-label": "Password",
     "submit-button-label": "Login"
   },
+  "banks-card": {
+    "title": "Banks",
+    "add-label": "Add new bank",
+    "rename-menu-option": "Rename",
+    "delete-menu-option": "Delete"
+  },
+  "rename-bank-modal": {
+    "title": "Rename bank",
+    "name-label": "Bank name",
+    "rename-button-label": "Rename",
+    "close-button-label": "Close"
+  },
+  "create-bank-modal": {
+    "title": "Create bank",
+    "name-label": "Bank name",
+    "create-button-label": "Create",
+    "close-button-label": "Close"
+  },
+  "delete-bank-modal": {
+    "title": "Delete bank",
+    "description": "Deleting a bank will not only delete the bank but also all the transactions related to it. Are you sure?",
+    "delete-button-label": "Delete",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

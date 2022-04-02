@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import "i18n";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "themes";
-import { makeServer } from "mocks/mirage";
+import { makeServer } from "mocks/mirage.js";
 import UserProvider from "providers/UserProvider";
 import AuthProvider from "providers/AuthProvider";
 

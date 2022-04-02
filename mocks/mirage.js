@@ -1,4 +1,4 @@
-import { createServer, Model, Response } from "miragejs";
+import { belongsTo, createServer, Model, Response } from "miragejs";
 import md5 from "md5";
 import Cookies from "js-cookie";
 import userMock from "./userMock";
@@ -27,6 +27,9 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
     models: {
       bank: Model,
+      transaction: Model.extend({
+        bank: belongsTo("bank"),
+      }),
     },
 
     factories: {
@@ -34,7 +37,9 @@ export const makeServer = ({ environment = "test" } = {}) => {
     },
 
     seeds(server) {
-      server.createList("bank", 3);
+      server.createList("bank", 3).forEach((bank) => {
+        server.createList("transaction", 20, { bank });
+      });
     },
 
     routes() {
@@ -97,6 +102,11 @@ export const makeServer = ({ environment = "test" } = {}) => {
       });
 
       this.delete("/banks/:id");
+
+      this.get("/banks/:id/transactions", (schema, request) => {
+        const id = request.params.id;
+        return schema.transactions.all().filter(({ bank }) => bank.id === id);
+      });
     },
   });
 

@@ -5,6 +5,16 @@
     "password-label": "Password",
     "submit-button-label": "Login"
   },
+  "banks-card": {
+    "title": "Banks",
+    "add-label": "Add new bank",
+    "rename-menu-option": "Rename",
+    "delete-menu-option": "Delete"
+  },
+  "rename-bank-modal": {
+    "title": "Rename bank",
+    "name-label": "Bank name"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

@@ -8,9 +8,11 @@ import { FaTrash } from "react-icons/fa";
 
 type Props = {
   t: TFunction;
+  onRenameClick: () => void;
+  onDeleteClick: () => void;
 };
 
-const BanksCardMenuOptionsElement = ({ t }: Props): ReactElement => (
+const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props): ReactElement => (
   <Menu>
     <MenuButton
       as={IconButton}
@@ -19,11 +21,20 @@ const BanksCardMenuOptionsElement = ({ t }: Props): ReactElement => (
       icon={<Icon as={BiDotsHorizontalRounded} w={8} h={8} />}
     />
     <MenuList>
-      <MenuItem p="12px" icon={<Icon as={RiPencilFill} verticalAlign="middle" />}>
+      <MenuItem
+        p="12px"
+        icon={<Icon as={RiPencilFill} verticalAlign="middle" />}
+        onClick={onRenameClick}
+      >
         {t("banks-card.rename-menu-option")}
       </MenuItem>
       <Divider />
-      <MenuItem p="12px" color="error" icon={<Icon as={FaTrash} verticalAlign="middle" />}>
+      <MenuItem
+        p="12px"
+        color="error"
+        icon={<Icon as={FaTrash} verticalAlign="middle" />}
+        onClick={onDeleteClick}
+      >
         <Text>{t("banks-card.delete-menu-option")}</Text>
       </MenuItem>
     </MenuList>

@@ -10,8 +10,10 @@ export type BanksContextProps = {
   setActiveBank: (bank: Bank) => void;
   setBankSelectedToBeRenamed: (bank: Bank | undefined) => void;
   setBankSelectedToBeDeleted: (bank: Bank | undefined) => void;
+  onCreate: () => void;
+  setOnCreate: (onCreate: () => void) => void;
   load: (bank: Bank) => Promise<void> | void;
-  add: (bank: Bank) => Promise<void> | void;
+  add: (bank: Pick<Bank, "name">) => Promise<void> | void;
   update: (bank: Bank) => Promise<void> | void;
   remove: (bank: Bank) => Promise<void> | void;
 };
@@ -40,6 +42,12 @@ export default createContext<BanksContextProps>({
   },
   setBankSelectedToBeDeleted(): never {
     throw new Error("provide setBankSelectedToBeDeleted property in BanksContext");
+  },
+  onCreate(): never {
+    throw new Error("provide onCreate property in BanksContext");
+  },
+  setOnCreate(): never {
+    throw new Error("provide setOnCreate property in BanksContext");
   },
   load(): never {
     throw new Error("provide load property in BanksContext");

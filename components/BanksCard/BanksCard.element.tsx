@@ -10,6 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import BanksCardMenuOptions from "components/BanksCardMenuOptions";
+import CreateBankModal from "components/CreateBankModal";
 import DeleteBankModal from "components/DeleteBankModal";
 import Headline from "components/Headline";
 import RenameBankModal from "components/RenameBankModal";
@@ -95,6 +96,7 @@ const BanksCardElement = ({
     </VStack>
     <RenameBankModal />
     <DeleteBankModal />
+    <CreateBankModal />
   </Box>
 );
 

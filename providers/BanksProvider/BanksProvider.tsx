@@ -1,7 +1,8 @@
-import BanksContext from "contexts/BanksContext";
+import BanksContext, { BanksContextProps } from "contexts/BanksContext";
 import useUser from "hooks/useUser";
 import Bank from "interfaces/Bank";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import { createBank } from "services/createBank";
 import { deleteBank } from "services/deleteBank";
 import { getBanks } from "services/getBanks";
 import { updateBank } from "services/updateBank";
@@ -11,11 +12,19 @@ type Props = { children?: ReactNode };
 const BanksProvider = ({ children }: Props): ReactElement => {
   const { user } = useUser();
 
-  const [banks, setBanks] = useState<Bank[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeBank, setActiveBank] = useState<Bank>();
-  const [bankSelectedToBeRenamed, setBankSelectedToBeRenamed] = useState<Bank>();
-  const [bankSelectedToBeDeleted, setBankSelectedToBeDeleted] = useState<Bank>();
+  const [banks, setBanks] = useState<BanksContextProps["banks"]>([]);
+  const [isLoading, setIsLoading] = useState<BanksContextProps["isLoading"]>(true);
+  const [activeBank, setActiveBank] = useState<BanksContextProps["activeBank"]>();
+
+  const [bankSelectedToBeRenamed, setBankSelectedToBeRenamed] =
+    useState<BanksContextProps["bankSelectedToBeRenamed"]>();
+
+  const [bankSelectedToBeDeleted, setBankSelectedToBeDeleted] =
+    useState<BanksContextProps["bankSelectedToBeDeleted"]>();
+
+  const [onCreate, setOnCreate] = useState<BanksContextProps["onCreate"]>(() => () => {
+    throw new Error("onCreate method should be implemented before accessing it.");
+  });
 
   const load = async (): Promise<void> => {
     setIsLoading(true);
@@ -32,8 +41,9 @@ const BanksProvider = ({ children }: Props): ReactElement => {
     }
   };
 
-  const add = async (bank: Bank): Promise<void> => {
-    throw new Error("method not implemented: " + bank);
+  const add = async (bank: Pick<Bank, "name">): Promise<void> => {
+    const bankCreated = await createBank(bank);
+    setBanks((_banks) => [..._banks, bankCreated]);
   };
 
   const update = async (bank: Bank): Promise<void> => {
@@ -81,6 +91,8 @@ const BanksProvider = ({ children }: Props): ReactElement => {
         setActiveBank,
         setBankSelectedToBeRenamed,
         setBankSelectedToBeDeleted,
+        onCreate,
+        setOnCreate,
         load,
         add,
         update,

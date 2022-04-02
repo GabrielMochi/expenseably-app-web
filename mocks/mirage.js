@@ -3,6 +3,7 @@ import md5 from "md5";
 import Cookies from "js-cookie";
 import userMock from "./userMock";
 import bankFactory from "./factories/bankFactory";
+import faker from "@faker-js/faker";
 
 const SESSION_COOKIE_NAME = "session";
 
@@ -76,7 +77,20 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.get("/banks");
 
-      this.put("/banks/:id", function (schema, request) {
+      this.post("/banks", (schema, request) => {
+        const { name } = JSON.parse(request.requestBody);
+
+        const bank = {
+          id: faker.datatype.uuid(),
+          name,
+          createdAt: faker.date.recent(),
+          user: userMock,
+        };
+
+        return schema.banks.create(bank);
+      });
+
+      this.put("/banks/:id", (schema, request) => {
         const id = request.params.id;
         const bank = JSON.parse(request.requestBody);
         return schema.banks.find(id).update(bank);

@@ -8,14 +8,14 @@ import BanksProvider from "providers/BanksProvider";
 const BanksCardModule = (): ReactElement => {
   const { t } = useTranslation();
   const { user } = useUser();
-  const { banks, isLoading, activeBank, setActiveBank } = useBanks();
+  const { banks, isLoading, activeBank, setActiveBank, onCreate } = useBanks();
 
   const showSkeleton = useMemo(() => isLoading || !user, [isLoading, user]);
 
   return (
     <BanksCardElement
       t={t}
-      onAddClick={() => null}
+      onAddClick={onCreate}
       banks={banks}
       showSkeleton={showSkeleton}
       activeBank={activeBank}

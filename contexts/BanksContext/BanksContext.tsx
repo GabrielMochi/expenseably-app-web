@@ -5,6 +5,7 @@ export type BanksContextProps = {
   banks: Bank[];
   activeBank: Bank | undefined;
   isLoading: boolean;
+  setActiveBank: (bank: Bank) => void;
   load: (bank: Bank) => Promise<void> | void;
   add: (bank: Bank) => Promise<void> | void;
   update: (bank: Bank) => Promise<void> | void;
@@ -21,8 +22,11 @@ export default createContext<BanksContextProps>({
   get isLoading(): never {
     throw new Error("provide isLoading property in BanksContext");
   },
+  setActiveBank(): never {
+    throw new Error("provide setActiveBank property in BanksContext");
+  },
   load(): never {
-    throw new Error("provide add property in BanksContext");
+    throw new Error("provide load property in BanksContext");
   },
   add(): never {
     throw new Error("provide add property in BanksContext");

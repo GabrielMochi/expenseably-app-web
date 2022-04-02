@@ -69,7 +69,7 @@ const BanksProvider = ({ children }: Props): ReactElement => {
   const unload = (): void => {
     setBanks([]);
     setIsLoading(true);
-    setActiveBank({} as Bank);
+    setActiveBank(undefined);
   };
 
   useEffect(() => {

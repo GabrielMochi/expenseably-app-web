@@ -8,6 +8,7 @@ import { getBanks } from "services/getBanks";
 import BanksCardElement from "./BanksCard.element";
 import { updateBank as updateBankService } from "services/updateBank";
 import { useDisclosure } from "@chakra-ui/react";
+import { deleteBank } from "services/deleteBank";
 
 const BanksCardModule = (): ReactElement => {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const BanksCardModule = (): ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeBank, setActiveBank] = useState<Bank>();
   const [bankSelectedToBeRenamed, setBankSelectedToBeRenamed] = useState<Bank>();
+  const [bankSelectedToBeDeleted, setBankSelectedToBeDeleted] = useState<Bank>();
 
   const showSkeleton = useMemo(() => isLoading || !user, [isLoading, user]);
 
@@ -62,7 +64,13 @@ const BanksCardModule = (): ReactElement => {
   };
 
   const removeBank = async (bank: Bank): Promise<void> => {
-    throw new Error("method not implemented");
+    await deleteBank(bank);
+    const banksCopy = [...banks];
+    const index = banksCopy.findIndex((_bank) => _bank.id === bank.id);
+
+    banksCopy.splice(index, 1);
+
+    setBanks([...banksCopy]);
   };
 
   const unloadBanks = (): void => {
@@ -74,6 +82,11 @@ const BanksCardModule = (): ReactElement => {
   const onRenameClick = (bank: Bank): void => {
     setBankSelectedToBeRenamed(bank);
     onRenameModalOpen();
+  };
+
+  const onDeleteClick = (bank: Bank): void => {
+    setBankSelectedToBeDeleted(bank);
+    onDeleteModalOpen();
   };
 
   useEffect(() => {
@@ -104,9 +117,13 @@ const BanksCardModule = (): ReactElement => {
         activeBank={activeBank}
         onBankButtonClick={setActiveBank}
         onRenameClick={onRenameClick}
+        onDeleteClick={onDeleteClick}
         isRenameModalOpen={isRenameModalOpen}
+        isDeleteModalOpen={isDeleteModalOpen}
         onRenameModalClose={onRenameModalClose}
+        onDeleteModalClose={onDeleteModalClose}
         bankSelectedToBeRenamed={bankSelectedToBeRenamed}
+        bankSelectedToBeDeleted={bankSelectedToBeDeleted}
       />
     </BanksContext.Provider>
   );

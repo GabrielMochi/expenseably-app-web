@@ -17,6 +17,12 @@
     "rename-button-label": "Rename",
     "close-button-label": "Close"
   },
+  "delete-bank-modal": {
+    "title": "Delete bank",
+    "description": "Deleting a bank will not only delete the bank but also all the transactions related to it. Are you sure?",
+    "delete-button-label": "Delete",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

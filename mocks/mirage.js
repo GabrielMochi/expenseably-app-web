@@ -81,6 +81,8 @@ export const makeServer = ({ environment = "test" } = {}) => {
         const bank = JSON.parse(request.requestBody);
         return schema.banks.find(id).update(bank);
       });
+
+      this.delete("/banks/:id");
     },
   });
 

@@ -12,7 +12,7 @@ export type BanksContextProps = {
   setBankSelectedToBeDeleted: (bank: Bank | undefined) => void;
   onCreate: () => void;
   setOnCreate: (onCreate: () => void) => void;
-  load: (bank: Bank) => Promise<void> | void;
+  load: () => Promise<void> | void;
   add: (bank: Pick<Bank, "name">) => Promise<void> | void;
   update: (bank: Bank) => Promise<void> | void;
   remove: (bank: Bank) => Promise<void> | void;

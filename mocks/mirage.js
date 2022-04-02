@@ -6,11 +6,11 @@ import bankFactory from "./factories/bankFactory";
 
 const SESSION_COOKIE_NAME = "session";
 
-const isUserAuthenticated = (): boolean => {
+const isUserAuthenticated = () => {
   return !!Cookies.get(SESSION_COOKIE_NAME);
 };
 
-const authenticateUser = (): void => {
+const authenticateUser = () => {
   Cookies.set(SESSION_COOKIE_NAME, new Date().getTime().toString(), {
     domain: "localhost",
     path: "/",
@@ -75,6 +75,12 @@ export const makeServer = ({ environment = "test" } = {}) => {
       });
 
       this.get("/banks");
+
+      this.put("/banks/:id", function (schema, request) {
+        const id = request.params.id;
+        const bank = JSON.parse(request.requestBody);
+        return schema.banks.find(id).update(bank);
+      });
     },
   });
 

@@ -73,7 +73,8 @@ const CreateBankModalModule = (): ReactElement => {
 
   useEffect(() => {
     if (!isOpen) formik.resetForm();
-  }, [formik, isOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   return <CreateTransactionModalElement t={t} isOpen={isOpen} onClose={onClose} formik={formik} />;
 };

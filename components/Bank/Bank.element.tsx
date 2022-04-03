@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon } from "@chakra-ui/react";
+import { Box, Flex, Icon } from "@chakra-ui/react";
 import BanksCardMenuOptions from "components/BanksCardMenuOptions";
 import Bank from "interfaces/Bank";
 import React, { ReactElement } from "react";
@@ -11,16 +11,18 @@ type Props = {
 };
 
 const BankElement = ({ bank, activeBank, onBankButtonClick }: Props): ReactElement => (
-  <Button
-    variant="ghost"
+  <Flex
     w="100%"
     height="64px"
-    alignItems="center"
+    align="center"
     border="2px solid"
     borderColor={activeBank?.id === bank.id ? "primary" : "gray.300"}
     borderRadius="12px"
     color={"black"}
     px="12px"
+    cursor="pointer"
+    fontWeight="700"
+    _hover={{ bg: "gray.100" }}
     onClick={() => onBankButtonClick(bank)}
   >
     <Box>
@@ -37,7 +39,7 @@ const BankElement = ({ bank, activeBank, onBankButtonClick }: Props): ReactEleme
     <Box>
       <BanksCardMenuOptions bank={bank} />
     </Box>
-  </Button>
+  </Flex>
 );
 
 export default BankElement;

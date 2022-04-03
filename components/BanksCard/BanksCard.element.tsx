@@ -19,8 +19,8 @@ type Props = {
 
 const BankListSkeleton = (): ReactElement => (
   <>
-    <Skeleton w="100%" h="80px" speed={4}></Skeleton>
-    <Skeleton w="100%" h="80px" mt="12px" speed={4}></Skeleton>
+    <Skeleton w="100%" h="64px" speed={4} borderRadius="12px"></Skeleton>
+    <Skeleton w="100%" h="64px" mt="12px" speed={4} borderRadius="12px"></Skeleton>
   </>
 );
 

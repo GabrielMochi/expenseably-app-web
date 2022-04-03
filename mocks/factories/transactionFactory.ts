@@ -1,11 +1,18 @@
 import faker from "@faker-js/faker";
 import Transaction, {
+  CreateTransactionDto,
   Currency,
   TransactionCategory,
   TransactionType,
 } from "interfaces/Transaction";
 import Bank from "interfaces/Bank";
 import { Factory } from "miragejs";
+
+export const createMockTransaction = (createTransactionDto: CreateTransactionDto): Transaction => ({
+  id: faker.datatype.uuid(),
+  createdAt: faker.date.recent(),
+  ...createTransactionDto,
+});
 
 export default Factory.extend<Transaction>({
   id() {

@@ -2,9 +2,8 @@ import { belongsTo, createServer, Model, Response } from "miragejs";
 import md5 from "md5";
 import Cookies from "js-cookie";
 import userMock from "./userMock";
-import bankFactory from "./factories/bankFactory";
-import transactionFactory from "./factories/transactionFactory";
-import faker from "@faker-js/faker";
+import bankFactory, { createMockBank } from "./factories/bankFactory";
+import transactionFactory, { createMockTransaction } from "./factories/transactionFactory";
 
 const SESSION_COOKIE_NAME = "session";
 
@@ -86,14 +85,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.post("/banks", (schema, request) => {
         const { name } = JSON.parse(request.requestBody);
-
-        const bank = {
-          id: faker.datatype.uuid(),
-          name,
-          createdAt: faker.date.recent(),
-          user: userMock,
-        };
-
+        const bank = createMockBank(name);
         return schema.banks.create(bank);
       });
 
@@ -108,6 +100,12 @@ export const makeServer = ({ environment = "test" } = {}) => {
       this.get("/banks/:id/transactions", (schema, request) => {
         const id = request.params.id;
         return schema.transactions.all().filter(({ bank }) => bank.id === id);
+      });
+
+      this.post("/transactions", (schema, request) => {
+        const createTransactionDto = JSON.parse(request.requestBody);
+        const transaction = createMockTransaction(createTransactionDto);
+        return schema.transactions.create(transaction);
       });
     },
   });

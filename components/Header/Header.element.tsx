@@ -22,6 +22,7 @@ const HeaderElement = ({ logout, isLoggingOut }: Props): ReactElement => (
       bg="white"
       align="center"
       justify="center"
+      zIndex="42"
     >
       <Logo />
       <Button

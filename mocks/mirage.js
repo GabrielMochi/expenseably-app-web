@@ -99,7 +99,20 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.get("/banks/:id/transactions", (schema, request) => {
         const id = request.params.id;
-        return schema.transactions.all().filter(({ bank }) => bank.id === id);
+        const { category, search } = request.queryParams;
+
+        let transactions = schema.transactions.all().filter(({ bank }) => bank.id === id);
+
+        if (category) {
+          transactions = transactions.filter((transaction) => transaction.category === category);
+        }
+
+        if (search) {
+          // search only for description in mock
+          transactions = transactions.filter(({ description }) => description.includes(search));
+        }
+
+        return transactions;
       });
 
       this.post("/transactions", (schema, request) => {

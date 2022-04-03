@@ -56,6 +56,10 @@
     "create-button-label": "Create",
     "close-button-label": "Close"
   },
+  "transaction-search-box": {
+    "search-placeholder": "Search...",
+    "search-label": "Search"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

@@ -3,6 +3,7 @@ import md5 from "md5";
 import Cookies from "js-cookie";
 import userMock from "./userMock";
 import bankFactory from "./factories/bankFactory";
+import transactionFactory from "./factories/transactionFactory";
 import faker from "@faker-js/faker";
 
 const SESSION_COOKIE_NAME = "session";
@@ -34,6 +35,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
     factories: {
       bank: bankFactory,
+      transaction: transactionFactory,
     },
 
     seeds(server) {

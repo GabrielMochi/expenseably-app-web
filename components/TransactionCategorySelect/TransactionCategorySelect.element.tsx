@@ -22,6 +22,7 @@ const TransactionCategorySelectElement = ({
     variant="filled"
     fontSize="1.6rem"
     height="40px"
+    width="auto"
     value={selectedTransactionCategory}
     onChange={(event) =>
       onTransactionCategoryChange(event.target.value as SelectTransactionCategoryOptions)

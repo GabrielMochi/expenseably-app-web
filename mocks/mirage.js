@@ -121,6 +121,8 @@ export const makeServer = ({ environment = "test" } = {}) => {
         const transaction = createMockTransaction({ ...createTransactionDto, bank });
         return schema.transactions.create(transaction);
       });
+
+      this.delete("/transactions/:id");
     },
   });
 

@@ -1,11 +1,11 @@
 import TransactionsContext, { TransactionsContextProps } from "contexts/TransactionsContext";
 import useBanks from "hooks/useBanks";
 import useUser from "hooks/useUser";
-import { CreateTransactionDto, LoadQueryParams } from "interfaces/Transaction";
+import Transaction, { CreateTransactionDto, LoadQueryParams } from "interfaces/Transaction";
 // import Transaction, { CreateTransactionDto } from "interfaces/Transaction";
 import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
 import { createTransaction } from "services/createTransaction";
-// import { deleteTransaction } from "services/deleteTransaction";
+import { deleteTransaction } from "services/deleteTransaction";
 import { getBankTransactions } from "services/getBankTransactions";
 // import { updateTransactions } from "services/updateTransactions";
 
@@ -64,15 +64,14 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
     // setTransactions([...transactionsCopy]);
   };
 
-  const remove = async (): Promise<void> => {
-    throw new Error("method not implemented yet.");
-    // await deleteTransaction(transaction);
-    // const transactionsCopy = [...transactions];
-    // const index = transactionsCopy.findIndex((_transaction) => _transaction.id === transaction.id);
+  const remove = async (transaction: Transaction): Promise<void> => {
+    await deleteTransaction(transaction);
+    const transactionsCopy = [...transactions];
+    const index = transactionsCopy.findIndex((_transaction) => _transaction.id === transaction.id);
 
-    // transactionsCopy.splice(index, 1);
+    transactionsCopy.splice(index, 1);
 
-    // setTransactions([...transactionsCopy]);
+    setTransactions([...transactionsCopy]);
   };
 
   const unload = (): void => {

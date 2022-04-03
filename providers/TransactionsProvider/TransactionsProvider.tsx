@@ -1,9 +1,10 @@
 import TransactionsContext, { TransactionsContextProps } from "contexts/TransactionsContext";
 import useBanks from "hooks/useBanks";
 import useUser from "hooks/useUser";
+import { CreateTransactionDto } from "interfaces/Transaction";
 // import Transaction, { CreateTransactionDto } from "interfaces/Transaction";
 import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
-// import { createTransaction } from "services/createTransaction";
+import { createTransaction } from "services/createTransaction";
 // import { deleteTransaction } from "services/deleteTransaction";
 import { getBankTransactions } from "services/getBankTransactions";
 // import { updateTransactions } from "services/updateTransactions";
@@ -41,10 +42,9 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
     }
   }, [user, activeBank]);
 
-  const add = async (): Promise<void> => {
-    throw new Error("method not implemented yet.");
-    // const transactionCreated = await createTransaction(transaction);
-    // setTransactions((_transactions) => [..._transactions, transactionCreated]);
+  const add = async (createTransactionDto: CreateTransactionDto): Promise<void> => {
+    const transaction = await createTransaction(createTransactionDto);
+    setTransactions((_transactions) => [..._transactions, transaction]);
   };
 
   const update = async (): Promise<void> => {

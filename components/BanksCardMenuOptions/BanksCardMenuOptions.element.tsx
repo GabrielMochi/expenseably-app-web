@@ -19,6 +19,9 @@ const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props)
       variant="ghost"
       aria-label="bank menu options"
       icon={<Icon as={BiDotsHorizontalRounded} w={8} h={8} />}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
     />
     <MenuList>
       <MenuItem

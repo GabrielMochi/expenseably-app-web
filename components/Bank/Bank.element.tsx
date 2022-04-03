@@ -11,32 +11,33 @@ type Props = {
 };
 
 const BankElement = ({ bank, activeBank, onBankButtonClick }: Props): ReactElement => (
-  <Flex w="100%" align="center">
-    <Flex flex="1" mr="12px">
-      <Button
-        variant="ghost"
-        height="64px"
-        isFullWidth
-        px="0"
-        color="black"
-        justifyContent="left"
-        leftIcon={
-          <Icon
-            verticalAlign="middle"
-            as={VscCircleFilled}
-            color={activeBank?.id === bank.id ? "primary" : "gray.300"}
-            mr="12px"
-          />
-        }
-        onClick={() => onBankButtonClick(bank)}
-      >
-        {bank.name}
-      </Button>
-    </Flex>
+  <Button
+    variant="ghost"
+    w="100%"
+    height="64px"
+    alignItems="center"
+    border="2px solid"
+    borderColor={activeBank?.id === bank.id ? "primary" : "gray.300"}
+    borderRadius="12px"
+    color={"black"}
+    px="12px"
+    onClick={() => onBankButtonClick(bank)}
+  >
+    <Box>
+      <Icon
+        verticalAlign="middle"
+        as={VscCircleFilled}
+        w={10}
+        h={10}
+        color={activeBank?.id === bank.id ? "primary" : "gray.300"}
+        mr="12px"
+      />
+    </Box>
+    <Flex flex="1">{bank.name}</Flex>
     <Box>
       <BanksCardMenuOptions bank={bank} />
     </Box>
-  </Flex>
+  </Button>
 );
 
 export default BankElement;

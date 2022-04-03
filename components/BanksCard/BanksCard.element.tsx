@@ -1,4 +1,4 @@
-import { Box, Icon, chakra, VStack, Flex, IconButton, Skeleton, Divider } from "@chakra-ui/react";
+import { Box, Icon, chakra, VStack, Flex, IconButton, Skeleton } from "@chakra-ui/react";
 import CreateBankModal from "components/CreateBankModal";
 import DeleteBankModal from "components/DeleteBankModal";
 import Headline from "components/Headline";
@@ -43,7 +43,7 @@ const BanksCardElement = ({ t, onAddClick, banks, showSkeleton }: Props): ReactE
         <Icon as={MdAdd} w={10} h={10} />
       </IconButton>
     </Flex>
-    <VStack mt="32px" spacing="12px" divider={<Divider />}>
+    <VStack mt="32px" spacing="12px">
       {showSkeleton && <BankListSkeleton />}
       {banks.map((bank) => (
         <BankComponent key={bank.id} bank={bank} />

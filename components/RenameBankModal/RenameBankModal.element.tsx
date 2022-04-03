@@ -25,7 +25,7 @@ type Props = {
 };
 
 const RenameBankModalElement = ({ t, isOpen, onClose, formik }: Props): ReactElement => (
-  <Modal isOpen={isOpen} onClose={onClose} isCentered>
+  <Modal isOpen={isOpen} onClose={onClose} isCentered blockScrollOnMount={false}>
     <ModalOverlay bg="blackAlpha.200" backdropFilter="blur(1px) hue-rotate(90deg)" />
     <ModalContent minW="350px" w="auto" maxW="none" p="12px">
       <ModalHeader pos="relative">

@@ -104,7 +104,8 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.post("/transactions", (schema, request) => {
         const createTransactionDto = JSON.parse(request.requestBody);
-        const transaction = createMockTransaction(createTransactionDto);
+        const bank = schema.banks.find(createTransactionDto.bank.id);
+        const transaction = createMockTransaction({ ...createTransactionDto, bank });
         return schema.transactions.create(transaction);
       });
     },

@@ -27,7 +27,10 @@ const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props)
       <MenuItem
         p="12px"
         icon={<Icon as={RiPencilFill} verticalAlign="middle" />}
-        onClick={onRenameClick}
+        onClick={(event) => {
+          event.stopPropagation();
+          onRenameClick();
+        }}
       >
         {t("banks-card.rename-menu-option")}
       </MenuItem>
@@ -36,7 +39,10 @@ const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props)
         p="12px"
         color="error"
         icon={<Icon as={FaTrash} verticalAlign="middle" />}
-        onClick={onDeleteClick}
+        onClick={(event) => {
+          event.stopPropagation();
+          onDeleteClick();
+        }}
       >
         <Text>{t("banks-card.delete-menu-option")}</Text>
       </MenuItem>

@@ -47,6 +47,15 @@
     "income": "INCOME",
     "expense": "EXPENSE"
   },
+  "create-transaction-modal": {
+    "title": "Create transaction",
+    "amount-label": "Amount",
+    "type-label": "Type",
+    "category-label": "Category",
+    "description-label": "Description (optional)",
+    "create-button-label": "Create",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

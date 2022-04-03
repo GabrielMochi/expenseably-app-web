@@ -44,7 +44,7 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
 
   const add = async (createTransactionDto: CreateTransactionDto): Promise<void> => {
     const transaction = await createTransaction(createTransactionDto);
-    setTransactions((_transactions) => [..._transactions, transaction]);
+    setTransactions((_transactions) => [transaction, ..._transactions]);
   };
 
   const update = async (): Promise<void> => {

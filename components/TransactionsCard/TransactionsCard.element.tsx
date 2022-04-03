@@ -6,6 +6,7 @@ import type { TFunction } from "react-i18next";
 import { GrTransaction } from "react-icons/gr";
 import { MdAdd } from "react-icons/md";
 import TransactionComponent from "components/Transaction";
+import CreateTransactionModal from "components/CreateTransactionModal";
 
 type Props = {
   t: TFunction;
@@ -47,6 +48,7 @@ const TransactionsCardElement = ({
         <TransactionComponent key={transaction.id} transaction={transaction} />
       ))}
     </VStack>
+    <CreateTransactionModal />
   </Box>
 );
 

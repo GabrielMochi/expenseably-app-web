@@ -1,4 +1,4 @@
-import Transaction, { CreateTransactionDto } from "interfaces/Transaction";
+import Transaction, { CreateTransactionDto, LoadQueryParams } from "interfaces/Transaction";
 import { createContext } from "react";
 
 export type TransactionsContextProps = {
@@ -10,7 +10,7 @@ export type TransactionsContextProps = {
   setTransactionSelectedToBeDeleted: (transaction: Transaction | undefined) => void;
   onCreate: () => void;
   setOnCreate: (onCreate: () => void) => void;
-  load: () => Promise<void> | void;
+  load: (queryParams?: LoadQueryParams) => Promise<void> | void;
   add: (transaction: CreateTransactionDto) => Promise<void> | void;
   update: (transaction: Transaction) => Promise<void> | void;
   remove: (transaction: Transaction) => Promise<void> | void;

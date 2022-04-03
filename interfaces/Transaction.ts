@@ -23,6 +23,11 @@ export type CreateTransactionDto = Pick<
   "amount" | "type" | "category" | "currency" | "description" | "bank"
 >;
 
+export type LoadQueryParams = {
+  category?: TransactionCategory;
+  search?: string;
+};
+
 export default interface Transaction {
   id: string;
   amount: string;

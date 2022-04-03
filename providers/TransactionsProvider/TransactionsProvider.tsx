@@ -1,7 +1,7 @@
 import TransactionsContext, { TransactionsContextProps } from "contexts/TransactionsContext";
 import useBanks from "hooks/useBanks";
 import useUser from "hooks/useUser";
-import { CreateTransactionDto } from "interfaces/Transaction";
+import { CreateTransactionDto, LoadQueryParams } from "interfaces/Transaction";
 // import Transaction, { CreateTransactionDto } from "interfaces/Transaction";
 import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
 import { createTransaction } from "services/createTransaction";
@@ -28,19 +28,22 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
     throw new Error("onCreate method should be implemented before accessing it.");
   });
 
-  const load = useCallback(async (): Promise<void> => {
-    setIsLoading(true);
+  const load = useCallback(
+    async (queryParams?: LoadQueryParams): Promise<void> => {
+      setIsLoading(true);
 
-    if (!user || !activeBank) return;
+      if (!user || !activeBank) return;
 
-    try {
-      const transactions = await getBankTransactions(activeBank);
-      setTransactions(transactions);
-    } catch (error) {
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user, activeBank]);
+      try {
+        const transactions = await getBankTransactions(activeBank, queryParams);
+        setTransactions(transactions);
+      } catch (error) {
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [user, activeBank],
+  );
 
   const add = async (createTransactionDto: CreateTransactionDto): Promise<void> => {
     const transaction = await createTransaction(createTransactionDto);

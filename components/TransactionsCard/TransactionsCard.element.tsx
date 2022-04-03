@@ -31,7 +31,7 @@ const TransactionsCardElement = ({
   onAddClick,
   showSkeleton,
 }: Props): ReactElement => (
-  <Box bg="white" borderRadius="8px" boxShadow="base" p="32px">
+  <Box bg="white" borderRadius="8px" boxShadow="base" p="32px" mb="32px">
     <Flex align="center" justify="space-between">
       <Headline as="h3" display="inline-block">
         <Icon as={GrTransaction} verticalAlign="middle" />

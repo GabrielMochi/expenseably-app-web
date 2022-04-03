@@ -1,33 +1,20 @@
-import {
-  Box,
-  Icon,
-  chakra,
-  VStack,
-  Flex,
-  IconButton,
-  Skeleton,
-  Divider,
-  Button,
-} from "@chakra-ui/react";
-import BanksCardMenuOptions from "components/BanksCardMenuOptions";
+import { Box, Icon, chakra, VStack, Flex, IconButton, Skeleton, Divider } from "@chakra-ui/react";
 import CreateBankModal from "components/CreateBankModal";
 import DeleteBankModal from "components/DeleteBankModal";
 import Headline from "components/Headline";
 import RenameBankModal from "components/RenameBankModal";
 import Bank from "interfaces/Bank";
+import BankComponent from "components/Bank";
 import React, { ReactElement } from "react";
 import type { TFunction } from "react-i18next";
 import { BsBank2 } from "react-icons/bs";
 import { MdAdd } from "react-icons/md";
-import { VscCircleFilled } from "react-icons/vsc";
 
 type Props = {
   t: TFunction;
   onAddClick: () => void;
   banks: Bank[];
   showSkeleton: boolean;
-  activeBank: Bank | undefined;
-  onBankButtonClick: (bank: Bank) => void;
 };
 
 const BankListSkeleton = (): ReactElement => (
@@ -37,14 +24,7 @@ const BankListSkeleton = (): ReactElement => (
   </>
 );
 
-const BanksCardElement = ({
-  t,
-  onAddClick,
-  banks,
-  showSkeleton,
-  activeBank,
-  onBankButtonClick,
-}: Props): ReactElement => (
+const BanksCardElement = ({ t, onAddClick, banks, showSkeleton }: Props): ReactElement => (
   <Box bg="white" borderRadius="8px" boxShadow="base" p="32px">
     <Flex align="center" justify="space-between">
       <Headline as="h3" display="inline-block">
@@ -66,32 +46,7 @@ const BanksCardElement = ({
     <VStack mt="32px" spacing="12px" divider={<Divider />}>
       {showSkeleton && <BankListSkeleton />}
       {banks.map((bank) => (
-        <Flex key={bank.id} w="100%" align="center">
-          <Flex flex="1" mr="12px">
-            <Button
-              variant="ghost"
-              height="64px"
-              isFullWidth
-              px="0"
-              color="black"
-              justifyContent="left"
-              leftIcon={
-                <Icon
-                  verticalAlign="middle"
-                  as={VscCircleFilled}
-                  color={activeBank?.id === bank.id ? "primary" : "gray.300"}
-                  mr="12px"
-                />
-              }
-              onClick={() => onBankButtonClick(bank)}
-            >
-              {bank.name}
-            </Button>
-          </Flex>
-          <Box>
-            <BanksCardMenuOptions bank={bank} />
-          </Box>
-        </Flex>
+        <BankComponent key={bank.id} bank={bank} />
       ))}
     </VStack>
     <RenameBankModal />

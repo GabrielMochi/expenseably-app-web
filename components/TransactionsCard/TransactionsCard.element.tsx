@@ -7,6 +7,7 @@ import { GrTransaction } from "react-icons/gr";
 import { MdAdd } from "react-icons/md";
 import TransactionComponent from "components/Transaction";
 import CreateTransactionModal from "components/CreateTransactionModal";
+import TransactionsSearchBox from "components/TransactionsSearchBox";
 
 type Props = {
   t: TFunction;
@@ -42,11 +43,15 @@ const TransactionsCardElement = ({
         {t("transactions-card.add-button-label")}
       </Button>
     </Flex>
+    <Box mt="32px">
+      <TransactionsSearchBox />
+    </Box>
     <VStack mt="32px" spacing="12px" divider={<Divider />}>
       {showSkeleton && <BankListSkeleton />}
-      {transactions.map((transaction) => (
-        <TransactionComponent key={transaction.id} transaction={transaction} />
-      ))}
+      {!showSkeleton &&
+        transactions.map((transaction) => (
+          <TransactionComponent key={transaction.id} transaction={transaction} />
+        ))}
     </VStack>
     <CreateTransactionModal />
   </Box>

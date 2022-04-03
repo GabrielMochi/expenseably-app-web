@@ -13,7 +13,8 @@ const styles: ThemeExtension["styles"] = {
       bgColor: (colors as Record<string, string>)?.secondary,
       width: "100%",
       height: "100vh",
-      overflow: "auto",
+      overflowY: "scroll",
+      overflowX: "hidden",
     },
   },
 };

@@ -60,6 +60,12 @@
     "search-placeholder": "Search...",
     "search-label": "Search"
   },
+  "delete-transaction-modal": {
+    "title": "Delete transaction",
+    "description": "Are you sure?",
+    "delete-button-label": "Delete",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

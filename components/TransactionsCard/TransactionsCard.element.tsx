@@ -8,6 +8,7 @@ import { MdAdd } from "react-icons/md";
 import TransactionComponent from "components/Transaction";
 import CreateTransactionModal from "components/CreateTransactionModal";
 import TransactionsSearchBox from "components/TransactionsSearchBox";
+import DeleteTransactionModal from "components/DeleteTransactionModal";
 
 type Props = {
   t: TFunction;
@@ -54,6 +55,7 @@ const TransactionsCardElement = ({
         ))}
     </VStack>
     <CreateTransactionModal />
+    <DeleteTransactionModal />
   </Box>
 );
 

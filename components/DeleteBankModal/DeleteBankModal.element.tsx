@@ -28,7 +28,7 @@ const DeleteBankModalElement = ({
   onDelete,
 }: Props): ReactElement => (
   <Modal isOpen={isOpen} onClose={onClose} isCentered blockScrollOnMount={false}>
-    <ModalOverlay bg="blackAlpha.200" backdropFilter="blur(1px) hue-rotate(90deg)" />
+    <ModalOverlay bg="blackAlpha.200" backdropFilter="blur(1px)" />
     <ModalContent w="350px" maxW="none" p="12px">
       <ModalHeader pos="relative">
         <Headline as="h5">{t("delete-bank-modal.title")}</Headline>

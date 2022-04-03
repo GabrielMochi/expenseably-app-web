@@ -9,6 +9,7 @@ import {
 import dayjs from "dayjs";
 import { TFunction } from "react-i18next";
 import Transaction, { TransactionType } from "interfaces/Transaction";
+import TransactionsCardMenuOptions from "components/TransactionsCardMenuOptions";
 
 type Props = {
   t: TFunction;
@@ -41,7 +42,9 @@ const TransactionElement = ({ t, transaction }: Props): ReactElement => (
         {dayjs(transaction.createdAt).format(t("transactions-card.date-format"))}
       </Box>
     </Box>
-    <Box>{/* menu goes here */}</Box>
+    <Box ml="12px">
+      <TransactionsCardMenuOptions transaction={transaction} />
+    </Box>
   </Flex>
 );
 

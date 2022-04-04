@@ -122,6 +122,12 @@ export const makeServer = ({ environment = "test" } = {}) => {
         return schema.transactions.create(transaction);
       });
 
+      this.put("/transactions/:id", (schema, request) => {
+        const id = request.params.id;
+        const transaction = JSON.parse(request.requestBody);
+        return schema.transactions.find(id).update(transaction);
+      });
+
       this.delete("/transactions/:id");
     },
   });

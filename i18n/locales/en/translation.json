@@ -66,6 +66,15 @@
     "delete-button-label": "Delete",
     "close-button-label": "Close"
   },
+  "update-transaction-modal": {
+    "title": "Update transaction",
+    "amount-label": "Amount",
+    "type-label": "Type",
+    "category-label": "Category",
+    "description-label": "Description (optional)",
+    "create-button-label": "Update",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

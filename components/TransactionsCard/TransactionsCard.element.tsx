@@ -9,6 +9,7 @@ import TransactionComponent from "components/Transaction";
 import CreateTransactionModal from "components/CreateTransactionModal";
 import TransactionsSearchBox from "components/TransactionsSearchBox";
 import DeleteTransactionModal from "components/DeleteTransactionModal";
+import UpdateTransactionModal from "components/UpdateTransactionModal";
 
 type Props = {
   t: TFunction;
@@ -55,6 +56,7 @@ const TransactionsCardElement = ({
         ))}
     </VStack>
     <CreateTransactionModal />
+    <UpdateTransactionModal />
     <DeleteTransactionModal />
   </Box>
 );

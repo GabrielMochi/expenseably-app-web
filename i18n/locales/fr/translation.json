@@ -1,1 +1,90 @@
-{}
+{
+  "idioms": {
+    "en": "English",
+    "fr": "Français"
+  },
+  "login-card": {
+    "description": "Login",
+    "email-label": "Email",
+    "password-label": "Mot de passe",
+    "submit-button-label": "Login"
+  },
+  "banks-card": {
+    "title": "Banques",
+    "add-label": "Ajouter une nouvelle banque",
+    "rename-menu-option": "Renommer",
+    "delete-menu-option": "Supprimer"
+  },
+  "rename-bank-modal": {
+    "title": "Renommer la banque",
+    "name-label": "Nom de banque",
+    "rename-button-label": "Renommer",
+    "close-button-label": "Fermer"
+  },
+  "create-bank-modal": {
+    "title": "Créer une banque",
+    "name-label": "Nom de banque",
+    "create-button-label": "Créer",
+    "close-button-label": "Fermer"
+  },
+  "delete-bank-modal": {
+    "title": "Supprimer la banque",
+    "description": "La suppression d'une banque supprimera non seulement la banque, mais également toutes les transactions qui y sont liées. Êtes-vous sûr?",
+    "delete-button-label": "Supprimer",
+    "close-button-label": "Fermer"
+  },
+  "transactions-card": {
+    "title": "Transactions",
+    "add-button-label": "Ajouter",
+    "update-menu-option": "Mettre à jour",
+    "delete-menu-option": "Supprimer",
+    "date-format": "D MMM, YYYY",
+    "no-transactions": "Transactions vides."
+  },
+  "transaction-category": {
+    "salary": "Salaire",
+    "food": "Aliment",
+    "transport": "Transport",
+    "house": "Maison",
+    "other": "Un autre"
+  },
+  "transaction-type": {
+    "income": "REVENU",
+    "expense": "FRAIS"
+  },
+  "create-transaction-modal": {
+    "title": "Créer une transaction",
+    "amount-label": "Montant",
+    "type-label": "Taper",
+    "category-label": "Catégorie",
+    "description-label": "Description (facultatif)",
+    "create-button-label": "Créer",
+    "close-button-label": "Fermer"
+  },
+  "transaction-category-select": {
+    "all": "Tout"
+  },
+  "transaction-search-box": {
+    "search-placeholder": "Rechercher...",
+    "search-label": "Rechercher"
+  },
+  "delete-transaction-modal": {
+    "title": "Supprimer l'transaction",
+    "description": "Êtes-vous sûr?",
+    "delete-button-label": "Supprimer",
+    "close-button-label": "Fermer"
+  },
+  "update-transaction-modal": {
+    "title": "Mettre à jour l'transaction",
+    "amount-label": "Montant",
+    "type-label": "Taper",
+    "category-label": "Catégorie",
+    "description-label": "Description (facultatif)",
+    "create-button-label": "Mettre à jour",
+    "close-button-label": "Fermer"
+  },
+  "erros": {
+    "generic": "OOups... quelque chose s'est mal passé.",
+    "invalid-authentication": "Email ou mot de passe incorrect."
+  }
+}

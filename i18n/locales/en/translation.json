@@ -1,4 +1,8 @@
 {
+  "idioms": {
+    "en": "English",
+    "fr": "Français"
+  },
   "login-card": {
     "description": "Login",
     "email-label": "Email",
@@ -43,6 +47,9 @@
     "transport": "Transport",
     "house": "House",
     "other": "Other"
+  },
+  "transaction-category-select": {
+    "all": "All"
   },
   "transaction-type": {
     "income": "INCOME",

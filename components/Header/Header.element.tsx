@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Icon } from "@chakra-ui/react";
+import LanguageSelect from "components/LanguageSelect";
 import Logo from "components/Logo";
 import React, { ReactElement } from "react";
 import { MdLogout } from "react-icons/md";
@@ -24,6 +25,9 @@ const HeaderElement = ({ logout, isLoggingOut }: Props): ReactElement => (
       justify="center"
       zIndex="42"
     >
+      <Box pos="absolute" left="20px">
+        <LanguageSelect />
+      </Box>
       <Logo />
       <Button
         h="40px"

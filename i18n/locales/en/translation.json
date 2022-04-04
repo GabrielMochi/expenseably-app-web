@@ -34,7 +34,8 @@
     "add-button-label": "Add",
     "update-menu-option": "Update",
     "delete-menu-option": "Delete",
-    "date-format": "MMM D, YYYY"
+    "date-format": "MMM D, YYYY",
+    "no-transactions": "Empty transactions."
   },
   "transaction-category": {
     "salary": "Salary",

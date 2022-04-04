@@ -10,6 +10,7 @@ import CreateTransactionModal from "components/CreateTransactionModal";
 import TransactionsSearchBox from "components/TransactionsSearchBox";
 import DeleteTransactionModal from "components/DeleteTransactionModal";
 import UpdateTransactionModal from "components/UpdateTransactionModal";
+import Text from "components/Text";
 
 type Props = {
   t: TFunction;
@@ -54,6 +55,9 @@ const TransactionsCardElement = ({
         transactions.map((transaction) => (
           <TransactionComponent key={transaction.id} transaction={transaction} />
         ))}
+      {!showSkeleton && transactions.length === 0 && (
+        <Text>{t("transactions-card.no-transactions")}</Text>
+      )}
     </VStack>
     <CreateTransactionModal />
     <UpdateTransactionModal />

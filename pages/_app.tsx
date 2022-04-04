@@ -9,8 +9,6 @@ import AuthProvider from "providers/AuthProvider";
 import BanksProvider from "providers/BanksProvider";
 import TransactionsProvider from "providers/TransactionsProvider";
 
-console.log(process.env.NEXT_PUBLIC_LOAD_MOCK_SERVER);
-
 if (process.env.NEXT_PUBLIC_LOAD_MOCK_SERVER) {
   makeServer({ environment: "development" });
 }

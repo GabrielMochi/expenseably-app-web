@@ -31,7 +31,11 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
     async (queryParams?: LoadQueryParams): Promise<void> => {
       setIsLoading(true);
 
-      if (!user || !activeBank) return;
+      if (!user || !activeBank) {
+        setTransactions([]);
+        setIsLoading(false);
+        return;
+      }
 
       try {
         const transactions = await getBankTransactions(activeBank, queryParams);

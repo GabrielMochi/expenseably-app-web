@@ -7,6 +7,7 @@ import useTransactions from "hooks/useTransactions";
 import useDebounce from "hooks/useDebounce";
 import { SelectTransactionCategoryOptions } from "components/TransactionCategorySelect/TransactionCategorySelect.module";
 import { TransactionCategory } from "interfaces/Transaction";
+import useBanks from "hooks/useBanks";
 
 export type FormFields = { search: string };
 
@@ -17,6 +18,7 @@ const validationSchema = yup.object().shape({
 const TransactionsSearchBoxModule = (): ReactElement => {
   const { t } = useTranslation();
   const { load } = useTransactions();
+  const { activeBank } = useBanks();
 
   const [selectedTransactionCategory, setSelectedTransactionCategory] =
     useState<SelectTransactionCategoryOptions>("ALL");
@@ -57,6 +59,7 @@ const TransactionsSearchBoxModule = (): ReactElement => {
     <TransactionsSearchBoxElement
       t={t}
       formik={formik}
+      hasActiveBank={!!activeBank}
       selectedTransactionCategory={selectedTransactionCategory}
       onTransactionCategoryChange={onTransactionCategoryChange}
     />

@@ -15,6 +15,7 @@ import Text from "components/Text";
 type Props = {
   t: TFunction;
   transactions: Transaction[];
+  hasActiveBank: boolean;
   onAddClick: () => void;
   showSkeleton: boolean;
 };
@@ -31,6 +32,7 @@ const BankListSkeleton = (): ReactElement => (
 const TransactionsCardElement = ({
   t,
   transactions,
+  hasActiveBank,
   onAddClick,
   showSkeleton,
 }: Props): ReactElement => (
@@ -42,7 +44,14 @@ const TransactionsCardElement = ({
           {t("transactions-card.title")}
         </chakra.span>
       </Headline>
-      <Button h="40px" px="20px" onClick={onAddClick} leftIcon={<Icon as={MdAdd} />} rounded="full">
+      <Button
+        h="40px"
+        px="20px"
+        disabled={!hasActiveBank}
+        onClick={onAddClick}
+        leftIcon={<Icon as={MdAdd} />}
+        rounded="full"
+      >
         {t("transactions-card.add-button-label")}
       </Button>
     </Flex>

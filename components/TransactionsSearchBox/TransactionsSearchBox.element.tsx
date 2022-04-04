@@ -19,6 +19,7 @@ import { FormFields } from "./TransactionsSearchBox.module";
 type Props = {
   t: TFunction;
   formik: FormikProps<FormFields>;
+  hasActiveBank: boolean;
   selectedTransactionCategory: SelectTransactionCategoryOptions;
   onTransactionCategoryChange: (
     selectedTransactionCategory: SelectTransactionCategoryOptions,
@@ -28,6 +29,7 @@ type Props = {
 const TransactionsSearchBoxElement = ({
   t,
   formik,
+  hasActiveBank,
   selectedTransactionCategory,
   onTransactionCategoryChange,
 }: Props): ReactElement => (
@@ -42,6 +44,7 @@ const TransactionsSearchBoxElement = ({
           <FormField
             id="search"
             name="search"
+            isDisabled={!hasActiveBank}
             placeholder={t("transaction-search-box.search-placeholder")}
             value={formik.values.search}
             onChange={formik.handleChange}

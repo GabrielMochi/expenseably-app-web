@@ -7,6 +7,7 @@ import { SelectTransactionCategoryOptions } from "./TransactionCategorySelect.mo
 
 type Props = {
   t: TFunction;
+  hasACtiveBank: boolean;
   selectedTransactionCategory: SelectTransactionCategoryOptions;
   onTransactionCategoryChange: (
     selectedTransactionCategory: SelectTransactionCategoryOptions,
@@ -15,6 +16,7 @@ type Props = {
 
 const TransactionCategorySelectElement = ({
   t,
+  hasACtiveBank,
   selectedTransactionCategory,
   onTransactionCategoryChange,
 }: Props): ReactElement => (
@@ -23,6 +25,7 @@ const TransactionCategorySelectElement = ({
     fontSize="1.6rem"
     height="40px"
     width="auto"
+    disabled={!hasACtiveBank}
     value={selectedTransactionCategory}
     onChange={(event) =>
       onTransactionCategoryChange(event.target.value as SelectTransactionCategoryOptions)

@@ -43,6 +43,7 @@ const BanksProvider = ({ children }: Props): ReactElement => {
 
   const add = async (bank: Pick<Bank, "name">): Promise<void> => {
     const bankCreated = await createBank(bank);
+    if (!activeBank) setActiveBank(bankCreated);
     setBanks((_banks) => [..._banks, bankCreated]);
   };
 
@@ -62,7 +63,7 @@ const BanksProvider = ({ children }: Props): ReactElement => {
     const index = banksCopy.findIndex((_bank) => _bank.id === bank.id);
 
     banksCopy.splice(index, 1);
-
+    setActiveBank(banksCopy.length === 0 ? undefined : banksCopy[0]);
     setBanks([...banksCopy]);
   };
 

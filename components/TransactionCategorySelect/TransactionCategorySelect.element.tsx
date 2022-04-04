@@ -31,10 +31,10 @@ const TransactionCategorySelectElement = ({
       onTransactionCategoryChange(event.target.value as SelectTransactionCategoryOptions)
     }
   >
-    <option value="ALL">✅ {t("transaction-category-select.all")}</option>
+    <option value="ALL">✅ㅤ{t("transaction-category-select.all")}</option>
     {Object.values(TransactionCategory).map((category) => (
       <option key={category} value={category}>
-        {transactionCategoryToEmoji(category)} {transactionCategoryToLabel(t, category)}
+        {transactionCategoryToEmoji(category)}ㅤ{transactionCategoryToLabel(t, category)}
       </option>
     ))}
   </Select>

@@ -21,8 +21,8 @@ const LanguageSelectElement = ({
     value={currentLanguage}
     onChange={(event) => onCurrentLanguageChange(event.target.value)}
   >
-    <option value="en">🇬🇧 {t("idioms.en")}</option>
-    <option value="fr">🇫🇷 {t("idioms.fr")}</option>
+    <option value="en">🇬🇧ㅤ{t("idioms.en")}</option>
+    <option value="fr">🇫🇷ㅤ{t("idioms.fr")}</option>
   </Select>
 );
 

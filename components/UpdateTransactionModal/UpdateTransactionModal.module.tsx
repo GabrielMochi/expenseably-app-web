@@ -87,7 +87,6 @@ const UpdateTransactionModalModule = (): ReactElement => {
   }, [transaction]);
 
   useEffect(() => {
-    console.log(transaction);
     if (transaction) return onOpen();
   }, [transaction, onOpen]);
 

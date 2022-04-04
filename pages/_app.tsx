@@ -6,6 +6,8 @@ import { theme } from "themes";
 import { makeServer } from "mocks/mirage.js";
 import UserProvider from "providers/UserProvider";
 import AuthProvider from "providers/AuthProvider";
+import BanksProvider from "providers/BanksProvider";
+import TransactionsProvider from "providers/TransactionsProvider";
 
 if (process.env.NODE_ENV === "development") {
   makeServer({ environment: "development" });
@@ -15,9 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       <UserProvider>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
+        <BanksProvider>
+          <TransactionsProvider>
+            <ChakraProvider theme={theme}>
+              <Component {...pageProps} />
+            </ChakraProvider>
+          </TransactionsProvider>
+        </BanksProvider>
       </UserProvider>
     </AuthProvider>
   );

@@ -29,6 +29,53 @@
     "delete-button-label": "Delete",
     "close-button-label": "Close"
   },
+  "transactions-card": {
+    "title": "Transactions",
+    "add-button-label": "Add",
+    "update-menu-option": "Update",
+    "delete-menu-option": "Delete",
+    "date-format": "MMM D, YYYY",
+    "no-transactions": "Empty transactions."
+  },
+  "transaction-category": {
+    "salary": "Salary",
+    "food": "Food",
+    "transport": "Transport",
+    "house": "House",
+    "other": "Other"
+  },
+  "transaction-type": {
+    "income": "INCOME",
+    "expense": "EXPENSE"
+  },
+  "create-transaction-modal": {
+    "title": "Create transaction",
+    "amount-label": "Amount",
+    "type-label": "Type",
+    "category-label": "Category",
+    "description-label": "Description (optional)",
+    "create-button-label": "Create",
+    "close-button-label": "Close"
+  },
+  "transaction-search-box": {
+    "search-placeholder": "Search...",
+    "search-label": "Search"
+  },
+  "delete-transaction-modal": {
+    "title": "Delete transaction",
+    "description": "Are you sure?",
+    "delete-button-label": "Delete",
+    "close-button-label": "Close"
+  },
+  "update-transaction-modal": {
+    "title": "Update transaction",
+    "amount-label": "Amount",
+    "type-label": "Type",
+    "category-label": "Category",
+    "description-label": "Description (optional)",
+    "create-button-label": "Update",
+    "close-button-label": "Close"
+  },
   "erros": {
     "generic": "Oops... something went wrong.",
     "invalid-authentication": "Incorrect email or password."

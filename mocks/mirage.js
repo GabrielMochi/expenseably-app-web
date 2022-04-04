@@ -1,9 +1,9 @@
-import { createServer, Model, Response } from "miragejs";
+import { belongsTo, createServer, Model, Response } from "miragejs";
 import md5 from "md5";
 import Cookies from "js-cookie";
 import userMock from "./userMock";
-import bankFactory from "./factories/bankFactory";
-import faker from "@faker-js/faker";
+import bankFactory, { createMockBank } from "./factories/bankFactory";
+import transactionFactory, { createMockTransaction } from "./factories/transactionFactory";
 
 const SESSION_COOKIE_NAME = "session";
 
@@ -27,14 +27,20 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
     models: {
       bank: Model,
+      transaction: Model.extend({
+        bank: belongsTo("bank"),
+      }),
     },
 
     factories: {
       bank: bankFactory,
+      transaction: transactionFactory,
     },
 
     seeds(server) {
-      server.createList("bank", 3);
+      server.createList("bank", 3).forEach((bank) => {
+        server.createList("transaction", 20, { bank });
+      });
     },
 
     routes() {
@@ -79,14 +85,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.post("/banks", (schema, request) => {
         const { name } = JSON.parse(request.requestBody);
-
-        const bank = {
-          id: faker.datatype.uuid(),
-          name,
-          createdAt: faker.date.recent(),
-          user: userMock,
-        };
-
+        const bank = createMockBank(name);
         return schema.banks.create(bank);
       });
 
@@ -97,6 +96,39 @@ export const makeServer = ({ environment = "test" } = {}) => {
       });
 
       this.delete("/banks/:id");
+
+      this.get("/banks/:id/transactions", (schema, request) => {
+        const id = request.params.id;
+        const { category, search } = request.queryParams;
+
+        let transactions = schema.transactions.all().filter(({ bank }) => bank.id === id);
+
+        if (category) {
+          transactions = transactions.filter((transaction) => transaction.category === category);
+        }
+
+        if (search) {
+          // search only for description in mock
+          transactions = transactions.filter(({ description }) => description.includes(search));
+        }
+
+        return transactions;
+      });
+
+      this.post("/transactions", (schema, request) => {
+        const createTransactionDto = JSON.parse(request.requestBody);
+        const bank = schema.banks.find(createTransactionDto.bank.id);
+        const transaction = createMockTransaction({ ...createTransactionDto, bank });
+        return schema.transactions.create(transaction);
+      });
+
+      this.put("/transactions/:id", (schema, request) => {
+        const id = request.params.id;
+        const transaction = JSON.parse(request.requestBody);
+        return schema.transactions.find(id).update(transaction);
+      });
+
+      this.delete("/transactions/:id");
     },
   });
 

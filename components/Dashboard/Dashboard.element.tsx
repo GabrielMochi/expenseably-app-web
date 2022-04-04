@@ -1,5 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import BanksCard from "components/BanksCard";
+import TransactionsCard from "components/TransactionsCard";
 import React, { ReactElement } from "react";
 
 const DashboardElement = (): ReactElement => (
@@ -7,7 +8,9 @@ const DashboardElement = (): ReactElement => (
     <GridItem>
       <BanksCard />
     </GridItem>
-    <GridItem colSpan={3}></GridItem>
+    <GridItem colSpan={2}>
+      <TransactionsCard />
+    </GridItem>
   </Grid>
 );
 

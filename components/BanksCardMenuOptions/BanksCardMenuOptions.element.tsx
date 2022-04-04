@@ -19,12 +19,18 @@ const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props)
       variant="ghost"
       aria-label="bank menu options"
       icon={<Icon as={BiDotsHorizontalRounded} w={8} h={8} />}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
     />
     <MenuList>
       <MenuItem
         p="12px"
         icon={<Icon as={RiPencilFill} verticalAlign="middle" />}
-        onClick={onRenameClick}
+        onClick={(event) => {
+          event.stopPropagation();
+          onRenameClick();
+        }}
       >
         {t("banks-card.rename-menu-option")}
       </MenuItem>
@@ -33,7 +39,10 @@ const BanksCardMenuOptionsElement = ({ t, onRenameClick, onDeleteClick }: Props)
         p="12px"
         color="error"
         icon={<Icon as={FaTrash} verticalAlign="middle" />}
-        onClick={onDeleteClick}
+        onClick={(event) => {
+          event.stopPropagation();
+          onDeleteClick();
+        }}
       >
         <Text>{t("banks-card.delete-menu-option")}</Text>
       </MenuItem>

@@ -86,8 +86,8 @@ const TransactionsProvider = ({ children }: Props): ReactElement => {
   }, [load]);
 
   useEffect(() => {
-    if (isLoading || !user) unload();
-  }, [isLoading, user]);
+    if (!user) unload();
+  }, [user]);
 
   return (
     <TransactionsContext.Provider

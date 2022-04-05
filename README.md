@@ -91,7 +91,7 @@ Follow these steps
 
 ## Usage
 
-⚠️ Since the doesn't support creating new users, use the following credentials to get logged in:
+⚠️ Since the application doesn't support creating new users, use the following credentials to get logged in:
 
 ```
 email: walter_white@gmail.com

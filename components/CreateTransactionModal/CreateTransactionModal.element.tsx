@@ -56,7 +56,9 @@ const CreateTransactionModalElement = ({ t, isOpen, onClose, formik }: Props): R
                   onChange={formik.handleChange}
                 />
               </Flex>
-              <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
+              <FormErrorMessage fontSize="1.2rem">
+                {formik.errors.amount && t(formik.errors.amount)}
+              </FormErrorMessage>
             </FormControl>
             <FormControl>
               <FormLabel>{t("create-transaction-modal.type-label")}</FormLabel>

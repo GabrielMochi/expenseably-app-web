@@ -58,7 +58,9 @@ const UpdatedTransactionModalElement = ({ t, isOpen, onClose, formik }: Props): 
                   />
                 </Box>
               </Flex>
-              <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
+              <FormErrorMessage fontSize="1.2rem">
+                {formik.errors.amount && t(formik.errors.amount)}
+              </FormErrorMessage>
             </FormControl>
             <FormControl>
               <FormLabel>{t("update-transaction-modal.type-label")}</FormLabel>

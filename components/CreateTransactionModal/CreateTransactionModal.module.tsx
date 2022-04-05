@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { ReactElement, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, getI18n } from "react-i18next";
 import CreateTransactionModalElement from "./CreateTransactionModal.element";
 import * as yup from "yup";
 import { useDisclosure } from "@chakra-ui/react";
@@ -17,7 +17,10 @@ export type FormFields = {
 };
 
 const validationSchema = yup.object().shape({
-  amount: yup.number().positive().round("trunc").required(),
+  amount: yup
+    .string()
+    .matches(/^\d+(?:\.\d{2})$/, getI18n().t("create-transaction-modal.amount-error-message"))
+    .required(),
   type: yup
     .string()
     .equals(Object.values(TransactionType))

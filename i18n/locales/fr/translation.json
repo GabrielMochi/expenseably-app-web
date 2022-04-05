@@ -59,7 +59,8 @@
     "category-label": "Catégorie",
     "description-label": "Description (facultatif)",
     "create-button-label": "Créer",
-    "close-button-label": "Fermer"
+    "close-button-label": "Fermer",
+    "amount-error-message": "Le montant doit être dans un format comme celui-ci \"123.20\""
   },
   "transaction-category-select": {
     "all": "Tout"
@@ -81,7 +82,8 @@
     "category-label": "Catégorie",
     "description-label": "Description (facultatif)",
     "create-button-label": "Mettre à jour",
-    "close-button-label": "Fermer"
+    "close-button-label": "Fermer",
+    "amount-error-message": "Le montant doit être dans un format comme celui-ci \"123.20\""
   },
   "erros": {
     "generic": "OOups... quelque chose s'est mal passé.",

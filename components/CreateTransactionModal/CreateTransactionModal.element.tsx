@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   FormControl,
@@ -48,18 +47,16 @@ const CreateTransactionModalElement = ({ t, isOpen, onClose, formik }: Props): R
                   activeCurrency={formik.values.currency}
                   onCurrency={(currency) => formik.setFieldValue("currency", currency)}
                 />
-                <Box flex="1" ml="12px">
-                  <FormField
-                    id="amount"
-                    name="amount"
-                    type="number"
-                    min={0}
-                    value={formik.values.amount}
-                    onChange={formik.handleChange}
-                  />
-                  <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
-                </Box>
+                <FormField
+                  id="amount"
+                  name="amount"
+                  ml="12px"
+                  onClick={() => formik.setFieldTouched("amount")}
+                  value={formik.values.amount}
+                  onChange={formik.handleChange}
+                />
               </Flex>
+              <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
             </FormControl>
             <FormControl>
               <FormLabel>{t("create-transaction-modal.type-label")}</FormLabel>

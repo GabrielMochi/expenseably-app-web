@@ -62,7 +62,8 @@
     "category-label": "Category",
     "description-label": "Description (optional)",
     "create-button-label": "Create",
-    "close-button-label": "Close"
+    "close-button-label": "Close",
+    "amount-error-message": "The amount value must be in a format like this \"123.20\""
   },
   "transaction-search-box": {
     "search-placeholder": "Search...",
@@ -81,7 +82,8 @@
     "category-label": "Category",
     "description-label": "Description (optional)",
     "create-button-label": "Update",
-    "close-button-label": "Close"
+    "close-button-label": "Close",
+    "amount-error-message": "The amount value must be in a format like this \"123.20\""
   },
   "erros": {
     "generic": "Oops... something went wrong.",

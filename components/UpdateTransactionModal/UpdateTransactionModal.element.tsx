@@ -52,12 +52,13 @@ const UpdatedTransactionModalElement = ({ t, isOpen, onClose, formik }: Props): 
                   <FormField
                     id="amount"
                     name="amount"
+                    onClick={() => formik.setFieldTouched("amount")}
                     value={formik.values.amount}
                     onChange={formik.handleChange}
                   />
-                  <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
                 </Box>
               </Flex>
+              <FormErrorMessage fontSize="1.2rem">{formik.errors.amount}</FormErrorMessage>
             </FormControl>
             <FormControl>
               <FormLabel>{t("update-transaction-modal.type-label")}</FormLabel>

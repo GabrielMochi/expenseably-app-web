@@ -15,7 +15,7 @@
     <a href="https://github.com/GabrielMochi/expenseably-app-web"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/GabrielMochi/expenseably-app-web">View Demo</a>
+    <a href="https://extenseably.com/">View Demo</a>
     ·
     <a href="https://github.com/GabrielMochi/expenseably-app-web/issues">Report Bug</a>
     ·
@@ -84,12 +84,21 @@ Follow these steps
    ```
 2. create a `.env` file with this content:
    ```js
-   NEXT_PUBLIC_API_BASE_URL = "http://localhost:5000"
+   NEXT_PUBLIC_API_BASE_URL = "http://localhost:5000";
    ```
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+
+⚠️ Since the doesn't support creating new users, use the following credentials to get logged in:
+
+```
+email: walter_white@gmail.com
+password: HelloWorld@123
+```
+
+This credential is also valid for the [Demo](https://extenseably.com/).
 
 ### Dev mode
 

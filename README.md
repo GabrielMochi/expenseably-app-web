@@ -84,7 +84,7 @@ Follow these steps
    ```
 2. create a `.env` file with this content:
    ```js
-   NEXT_PUBLIC_API_BASE_URL = "http://localhost:5000";
+   NEXT_PUBLIC_API_BASE_URL = "http://localhost:5000"
    ```
 
 <!-- USAGE EXAMPLES -->

@@ -63,7 +63,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
         const { username, password } = JSON.parse(request.requestBody);
 
         if (
-          username === "gmochi56@icloud.com" &&
+          username === "walter_white@gmail.com" &&
           md5(password) === "54ca4c4c1a1a31db487ec6e7e1fc3b61" // HelloWorld@123
         ) {
           authenticateUser();

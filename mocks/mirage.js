@@ -52,7 +52,7 @@ export const makeServer = ({ environment = "test" } = {}) => {
 
       this.get("/user", () => {
         if (!isUserAuthenticated()) return new Response(401);
-        return userMock;
+        return { user: userMock };
       });
 
       this.get("/auth", () => {
